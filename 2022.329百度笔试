@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<iostream>
+#include<vector>
+using namespace std;
+
+
+string s;
+int j_lenth = 0;
+int o_lenth = 0;
+int count = 0;
+
+
+int main()
+{
+	int count = 0;
+
+	cin >> s;
+	if (s.size())
+	{
+		for (int i = 1; i < s.size(); i++)
+		{
+			for (int j = 0; j < i+1 && j <( s.size() - i); j++)
+			{
+				if (s[i - j] == s[i + j])
+				{
+					j_lenth = 1 + 2 * j;
+				}
+				if (s[i -j] == s[i + 1+j])
+				{
+					o_lenth = 2 + 2 * j;
+				}
+
+			}
+			if (j_lenth < o_lenth)
+			{
+				if (o_lenth > count)
+				{
+					count = o_lenth;
+				}
+			}
+			else
+			{
+				if (j_lenth > count)
+				{
+					count = j_lenth;
+				}
+			}
+			o_lenth=0;
+			j_lenth = 0;
+		}
+		cout << count;
+	}
+	return 0;
+}
+
+
