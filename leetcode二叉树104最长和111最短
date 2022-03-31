@@ -1,0 +1,96 @@
+/**二叉树最长
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int minDepth(TreeNode* root) 
+    {
+        queue<TreeNode*>p;
+        int count=0;
+        if(root==nullptr)
+        {
+            return 0;
+        }
+        p.push(root);
+        while(!p.empty())
+        {
+            count++;
+            int sz=size(p);
+            for(int i=0;i<sz;i++)
+            {
+                
+                TreeNode*q=p.front();
+                p.pop();
+                if((q->left==nullptr)&&(q->right==nullptr))
+                {
+                    return count;
+                }
+
+                if(q->left!=nullptr)
+                {
+                    p.push(q->left);
+                }
+                if(q->right!=nullptr)
+                {
+                    p.push(q->right);
+                }
+            }
+            
+        }return count;
+    }
+};
+
+/**二叉树最短
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int maxDepth(TreeNode* root) 
+    {
+        if(root==nullptr)
+        {
+            return 0;
+        }
+        queue<TreeNode*>p;
+        int count=0;
+        p.push(root);
+        while(!p.empty())
+        {
+            int sz=p.size();
+            while(sz>0)
+            {
+                TreeNode*q=p.front();
+                p.pop();
+                if(q->left)
+                {
+                    p.push(q->left);
+                }
+                if(q->right)
+                {
+                    p.push(q->right);
+                }
+                sz--;
+            }
+            count++;
+        }
+
+        return count;
+
+    }
+};
