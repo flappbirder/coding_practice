@@ -1,0 +1,17 @@
+   
+   #回溯
+   ###leetcode46 47(全排列I II)
+   I:给定一个不包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
+   关于回溯的核心代码段就是
+            used[i]=true;
+            tem.emplace_back(nums[i]);
+            dfs(nums,pos+1);
+            tem.pop_back();
+            used[i]=false;
+   
+   II:给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
+   区别在于
+   if (i > 0 && nums[i] == nums[i - 1] && !sign[i - 1]) {
+                continue;
+            }
+   这个&&sign[i-1]剪枝就很灵性
